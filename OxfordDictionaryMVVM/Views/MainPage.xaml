@@ -1,0 +1,117 @@
+﻿<Page x:Class="OxfordDictionaryMVVM.Views.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:Behaviors="using:Template10.Behaviors"
+      xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+      xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+      xmlns:controls="using:Template10.Controls"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="using:OxfordDictionaryMVVM.Views"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:vm="using:OxfordDictionaryMVVM.ViewModels" mc:Ignorable="d"
+      Background="#0078d7">
+
+    <Page.DataContext>
+        <vm:MainPageViewModel x:Name="ViewModel" />
+    </Page.DataContext>
+
+
+
+        <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel HorizontalAlignment="Left" Grid.Column="0" VerticalAlignment="Bottom" Orientation="Horizontal" Grid.Row="1">
+            <TextBlock Text="Contact &amp; Support :" VerticalAlignment="Center" Margin="20 0 0 0"></TextBlock>
+            <Image Source="/Assets/favicon.png" Height="59" Width="24" Margin="10 0 0 0" Tapped="Image_Tapped"/>
+        </StackPanel>
+
+        <StackPanel HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1">
+            <TextBlock Margin="0 50 0 0" FontSize="60" Text="OxfordDictionary" FontWeight="Bold" HorizontalAlignment="Center"></TextBlock>
+            <TextBlock Margin="0 20 0 0" FontSize="20" Text="Get to know the whole World today!" HorizontalAlignment="Center" FontStyle="Italic"/>
+
+            <Image Source="/Assets/pic.scale-400.png" Height="194" VerticalAlignment="Top" Width="380"/>
+            <RelativePanel>
+                <Button Content="Start Now" FontWeight="Bold" RelativePanel.AlignLeftWithPanel="true" Margin="20 0 0 0" Click="Start_Click"></Button>
+                <Button Content="What is it?" FontWeight="Bold" RelativePanel.AlignRightWithPanel="true" Margin="0 0 20 0" Click="About_Click"></Button>
+            </RelativePanel>
+
+        </StackPanel>
+
+        <StackPanel HorizontalAlignment="Right" Grid.Column="2" VerticalAlignment="Bottom" Orientation="Horizontal" Grid.Row="1">
+            <TextBlock Text="Developed by: Tamás Hargitai" Margin="0 0 20 20"></TextBlock>
+        </StackPanel>
+
+
+        <controls:PageHeader x:Name="pageHeader" RelativePanel.AlignLeftWithPanel="True"
+                             RelativePanel.AlignRightWithPanel="True"
+                             RelativePanel.AlignTopWithPanel="True" Text="Main Page" Grid.Row="0" Grid.ColumnSpan="3">
+
+            <controls:PageHeader.SecondaryCommands>
+                <AppBarButton Click="{x:Bind ViewModel.GotoSettings}" Label="Settings" />
+                <AppBarButton Click="{x:Bind ViewModel.GotoPrivacy}" Label="Privacy" />
+                <AppBarButton Click="{x:Bind ViewModel.GotoAbout}" Label="About" />
+            </controls:PageHeader.SecondaryCommands>
+
+        </controls:PageHeader>
+
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="AdaptiveVisualStateGroup">
+                <VisualState x:Name="VisualStateNarrow">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource NarrowMinWidth}" />
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState x:Name="VisualStateNormal">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource NormalMinWidth}" />
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState x:Name="VisualStateWide">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource WideMinWidth}" />
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+
+
+        <!--<controls:Resizer x:Name="parameterResizer" Margin="16,16,16,0"
+                          RelativePanel.AlignLeftWithPanel="True"
+                          RelativePanel.Below="pageHeader"/>-->
+
+        <!--<TextBox MinWidth="150" MinHeight="62"
+                     Header="Parameter to pass"
+                     Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     TextWrapping="Wrap">
+                <Interactivity:Interaction.Behaviors>
+                    
+            <!enable submit on enter key
+        
+                    <Behaviors:KeyBehavior Key="Enter">
+                        <Core:CallMethodAction MethodName="GotoDetailsPage" TargetObject="{Binding}" />
+                    </Behaviors:KeyBehavior>
+                    
+        focus on textbox when page loads
+        
+                    <Core:EventTriggerBehavior>
+                        <Behaviors:FocusAction />
+                    </Core:EventTriggerBehavior>
+                </Interactivity:Interaction.Behaviors>
+            </TextBox>
+
+        </controls:Resizer>-->
+
+        
+    </Grid>
+
+</Page>
