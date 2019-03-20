@@ -17,7 +17,7 @@
 
 
 
-        <Grid>
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
@@ -28,24 +28,23 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel HorizontalAlignment="Left" Grid.Column="0" VerticalAlignment="Bottom" Orientation="Horizontal" Grid.Row="1">
-            <TextBlock Text="Contact &amp; Support :" VerticalAlignment="Center" Margin="20 0 0 0"></TextBlock>
+        <StackPanel HorizontalAlignment="Left" Grid.Column="0" VerticalAlignment="Bottom" Orientation="Horizontal" Grid.Row="2">
+            <TextBlock Text="For contact &amp; Support :" VerticalAlignment="Center" Margin="20 0 0 0"></TextBlock>
             <Image Source="/Assets/favicon.png" Height="59" Width="24" Margin="10 0 0 0" Tapped="Image_Tapped"/>
         </StackPanel>
 
-        <StackPanel HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1">
-            <TextBlock Margin="0 50 0 0" FontSize="60" Text="OxfordDictionary" FontWeight="Bold" HorizontalAlignment="Center"></TextBlock>
-            <TextBlock Margin="0 20 0 0" FontSize="20" Text="Get to know the whole World today!" HorizontalAlignment="Center" FontStyle="Italic"/>
-
-            <Image Source="/Assets/pic.scale-400.png" Height="194" VerticalAlignment="Top" Width="380"/>
-            <RelativePanel>
+        <StackPanel HorizontalAlignment="Center" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" x:Name="ContainerStackPanel">
+            <TextBlock Margin="0 0 0 0" FontSize="40" FontWeight="Bold" HorizontalAlignment="Center" x:Name="TitleTextBlock" Text="Oxford Dictionary"></TextBlock>
+            <TextBlock Margin="0 20 0 0" FontSize="15" Text="Get to know the whole World today!" HorizontalAlignment="Center" FontStyle="Italic" x:Name="WelcomeTextBlock"/>
+            <Image Source="/Assets/SmallTile.scale-100.png" Height="53" VerticalAlignment="Top" Margin="0 20 0 0" x:Name="DictionaryImage"/>
+            <RelativePanel Margin="0 20 0 0" x:Name="ButtonPanel">
                 <Button Content="Start Now" FontWeight="Bold" RelativePanel.AlignLeftWithPanel="true" Margin="20 0 0 0" Click="Start_Click"></Button>
-                <Button Content="What is it?" FontWeight="Bold" RelativePanel.AlignRightWithPanel="true" Margin="0 0 20 0" Click="About_Click"></Button>
+                <Button Content="What is it?" FontWeight="Bold" RelativePanel.AlignRightWithPanel="true" Margin="0 0 20 0" Click="About_ClickAsync"></Button>
             </RelativePanel>
 
         </StackPanel>
 
-        <StackPanel HorizontalAlignment="Right" Grid.Column="2" VerticalAlignment="Bottom" Orientation="Horizontal" Grid.Row="1">
+        <StackPanel HorizontalAlignment="Right" Grid.Column="2" VerticalAlignment="Bottom" Orientation="Horizontal" Grid.Row="2">
             <TextBlock Text="Developed by: Tamás Hargitai" Margin="0 0 20 20"></TextBlock>
         </StackPanel>
 
@@ -65,7 +64,7 @@
 
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="AdaptiveVisualStateGroup">
-                <VisualState x:Name="VisualStateNarrow">
+                <!--<VisualState x:Name="VisualStateNarrow">
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="{StaticResource NarrowMinWidth}" />
                     </VisualState.StateTriggers>
@@ -79,6 +78,19 @@
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="{StaticResource WideMinWidth}" />
                     </VisualState.StateTriggers>
+                </VisualState>-->
+                <VisualState x:Name="test">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="575" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="TitleTextBlock.FontSize" Value="60"></Setter>
+                        <Setter Target="TitleTextBlock.Margin" Value="0 0 0 0"></Setter>
+                        <Setter Target="WelcomeTextBlock.FontSize" Value="20"></Setter>
+                        <Setter Target="DictionaryImage.Height" Value="73"></Setter>
+                        <Setter Target="ButtonPanel.Margin" Value="0 50 0 0"></Setter>
+                        <Setter Target="ContainerStackPanel.VerticalAlignment" Value="Center"></Setter>
+                    </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
@@ -111,7 +123,7 @@
 
         </controls:Resizer>-->
 
-        
+
     </Grid>
 
 </Page>
