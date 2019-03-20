@@ -29,29 +29,29 @@
         </Grid.RowDefinitions>
 
         <StackPanel HorizontalAlignment="Left" Grid.Column="0" VerticalAlignment="Bottom" Orientation="Horizontal" Grid.Row="2">
-            <TextBlock Text="For contact &amp; Support :" VerticalAlignment="Center" Margin="20 0 0 0"></TextBlock>
+            <TextBlock Text="For contact &amp; Support :" VerticalAlignment="Center" Margin="20 0 0 0" Foreground="White"></TextBlock>
             <Image Source="/Assets/favicon.png" Height="59" Width="24" Margin="10 0 0 0" Tapped="Image_Tapped"/>
         </StackPanel>
 
         <StackPanel HorizontalAlignment="Center" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" x:Name="ContainerStackPanel">
-            <TextBlock Margin="0 0 0 0" FontSize="40" FontWeight="Bold" HorizontalAlignment="Center" x:Name="TitleTextBlock" Text="Oxford Dictionary"></TextBlock>
-            <TextBlock Margin="0 20 0 0" FontSize="15" Text="Get to know the whole World today!" HorizontalAlignment="Center" FontStyle="Italic" x:Name="WelcomeTextBlock"/>
+            <TextBlock Foreground="White" Margin="0 0 0 0" FontSize="40" FontWeight="Bold" HorizontalAlignment="Center" x:Name="TitleTextBlock" Text="Oxford Dictionary"></TextBlock>
+            <TextBlock Foreground="White" Margin="0 20 0 0" FontSize="15" Text="Get to know the whole World today!" HorizontalAlignment="Center" FontStyle="Italic" x:Name="WelcomeTextBlock"/>
             <Image Source="/Assets/SmallTile.scale-100.png" Height="53" VerticalAlignment="Top" Margin="0 20 0 0" x:Name="DictionaryImage"/>
             <RelativePanel Margin="0 20 0 0" x:Name="ButtonPanel">
-                <Button Content="Start Now" FontWeight="Bold" RelativePanel.AlignLeftWithPanel="true" Margin="20 0 0 0" Click="Start_Click"></Button>
-                <Button Content="What is it?" FontWeight="Bold" RelativePanel.AlignRightWithPanel="true" Margin="0 0 20 0" Click="About_ClickAsync"></Button>
+                <Button Foreground="White" Content="Start Now" FontWeight="Bold" RelativePanel.AlignLeftWithPanel="true" Margin="20 0 0 0" Click="Start_Click"></Button>
+                <Button Foreground="White" Content="What is it?" FontWeight="Bold" RelativePanel.AlignRightWithPanel="true" Margin="0 0 20 0" Click="About_ClickAsync"></Button>
             </RelativePanel>
 
         </StackPanel>
 
         <StackPanel HorizontalAlignment="Right" Grid.Column="2" VerticalAlignment="Bottom" Orientation="Horizontal" Grid.Row="2">
-            <TextBlock Text="Developed by: Tamás Hargitai" Margin="0 0 20 20"></TextBlock>
+            <TextBlock Foreground="White" Text="Developed by: Tamás Hargitai" Margin="0 0 20 20"></TextBlock>
         </StackPanel>
 
 
         <controls:PageHeader x:Name="pageHeader" RelativePanel.AlignLeftWithPanel="True"
                              RelativePanel.AlignRightWithPanel="True"
-                             RelativePanel.AlignTopWithPanel="True" Text="Main Page" Grid.Row="0" Grid.ColumnSpan="3">
+                             RelativePanel.AlignTopWithPanel="True" Text="Welcome!" Grid.Row="0" Grid.ColumnSpan="3">
 
             <controls:PageHeader.SecondaryCommands>
                 <AppBarButton Click="{x:Bind ViewModel.GotoSettings}" Label="Settings" />

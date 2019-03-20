@@ -39,9 +39,6 @@ namespace OxfordDictionaryMVVM.ViewModels {
         public void GotoDetailsPage() =>
             NavigationService.Navigate(typeof(Views.DetailPage), Value);
 
-        //public void GotoInfoPage() =>
-        //    NavigationService.Navigate(typeof(Views.InfoPage), Value);
-
         public void GotoSettings() =>
             NavigationService.Navigate(typeof(Views.SettingsPage), 0);
 
