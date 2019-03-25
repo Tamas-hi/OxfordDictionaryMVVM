@@ -30,16 +30,22 @@
 
         <StackPanel HorizontalAlignment="Left" Grid.Column="0" VerticalAlignment="Bottom" Orientation="Horizontal" Grid.Row="2">
             <TextBlock Text="For contact &amp; Support :" VerticalAlignment="Center" Margin="20 0 0 0" Foreground="White"></TextBlock>
-            <Image Source="/Assets/favicon.png" Height="59" Width="24" Margin="10 0 0 0" Tapped="Image_Tapped"/>
-        </StackPanel>
+            <Image Source="/Assets/favicon.png" Height="59" Width="24" Margin="10 0 0 0">
+                <Interactivity:Interaction.Behaviors>
+                    <Core:EventTriggerBehavior EventName="Tapped">
+                        <Core:InvokeCommandAction Command="{Binding ImageCommand}" />
+                    </Core:EventTriggerBehavior>
+                </Interactivity:Interaction.Behaviors>
+            </Image>
+            </StackPanel>
 
         <StackPanel HorizontalAlignment="Center" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" x:Name="ContainerStackPanel">
             <TextBlock Foreground="White" Margin="0 0 0 0" FontSize="40" FontWeight="Bold" HorizontalAlignment="Center" x:Name="TitleTextBlock" Text="Oxford Dictionary"></TextBlock>
             <TextBlock Foreground="White" Margin="0 20 0 0" FontSize="15" Text="Get to know the whole World today!" HorizontalAlignment="Center" FontStyle="Italic" x:Name="WelcomeTextBlock"/>
             <Image Source="/Assets/SmallTile.scale-100.png" Height="53" VerticalAlignment="Top" Margin="0 20 0 0" x:Name="DictionaryImage"/>
             <RelativePanel Margin="0 20 0 0" x:Name="ButtonPanel">
-                <Button Foreground="White" Content="Start Now" FontWeight="Bold" RelativePanel.AlignLeftWithPanel="true" Margin="20 0 0 0" Click="Start_Click"></Button>
-                <Button Foreground="White" Content="What is it?" FontWeight="Bold" RelativePanel.AlignRightWithPanel="true" Margin="0 0 20 0" Click="About_ClickAsync"></Button>
+                <Button Foreground="White" Content="Start Now" FontWeight="Bold" RelativePanel.AlignLeftWithPanel="true" Margin="20 0 0 0" Command="{Binding StartCommand}"></Button>
+                <Button Foreground="White" Content="What is it?" FontWeight="Bold" RelativePanel.AlignRightWithPanel="true" Margin="0 0 20 0" Command="{Binding AboutCommand}"></Button>
             </RelativePanel>
 
         </StackPanel>
@@ -81,7 +87,7 @@
                 </VisualState>-->
                 <VisualState x:Name="test">
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="575" />
+                        <AdaptiveTrigger MinWindowHeight="500" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="TitleTextBlock.FontSize" Value="60"></Setter>

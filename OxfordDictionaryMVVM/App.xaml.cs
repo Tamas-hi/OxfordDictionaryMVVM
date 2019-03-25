@@ -16,7 +16,6 @@ namespace OxfordDictionaryMVVM {
     sealed partial class App : BootStrapper {
         public App() {
             InitializeComponent();
-            //SplashFactory = (e) => new Views.Splash(e);
 
             #region app settings
 
