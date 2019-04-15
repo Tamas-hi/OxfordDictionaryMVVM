@@ -3,40 +3,53 @@ using Template10.Common;
 using Template10.Utils;
 using Windows.UI.Xaml;
 
-namespace OxfordDictionaryMVVM.Services.SettingsServices {
-    public class SettingsService {
+namespace OxfordDictionaryMVVM.Services.SettingsServices
+{
+    public class SettingsService
+    {
         public static SettingsService Instance { get; } = new SettingsService();
         Template10.Services.SettingsService.ISettingsHelper _helper;
-        private SettingsService() {
+        private SettingsService()
+        {
             _helper = new Template10.Services.SettingsService.SettingsHelper();
         }
-
-        public bool UseShellBackButton {
+        /// <summary>
+        /// Template 10 Minimal template - Example of a setting that can be changed from a view model
+        /// </summary>
+        public bool UseShellBackButton
+        {
             get { return _helper.Read<bool>(nameof(UseShellBackButton), true); }
-            set {
+            set
+            {
                 _helper.Write(nameof(UseShellBackButton), value);
-                BootStrapper.Current.NavigationService.GetDispatcherWrapper().Dispatch(() => {
+                BootStrapper.Current.NavigationService.GetDispatcherWrapper().Dispatch(() =>
+                {
                     BootStrapper.Current.ShowShellBackButton = value;
                     BootStrapper.Current.UpdateShellBackButton();
                 });
             }
         }
 
-        public ApplicationTheme AppTheme {
-            get {
+        public ApplicationTheme AppTheme
+        {
+            get
+            {
                 var theme = ApplicationTheme.Light;
                 var value = _helper.Read<string>(nameof(AppTheme), theme.ToString());
                 return Enum.TryParse<ApplicationTheme>(value, out theme) ? theme : ApplicationTheme.Dark;
             }
-            set {
+            set
+            {
                 _helper.Write(nameof(AppTheme), value.ToString());
                 (Window.Current.Content as FrameworkElement).RequestedTheme = value.ToElementTheme();
             }
         }
 
-        public TimeSpan CacheMaxDuration {
+        public TimeSpan CacheMaxDuration
+        {
             get { return _helper.Read<TimeSpan>(nameof(CacheMaxDuration), TimeSpan.FromDays(2)); }
-            set {
+            set
+            {
                 _helper.Write(nameof(CacheMaxDuration), value);
                 BootStrapper.Current.CacheMaxDuration = value;
             }

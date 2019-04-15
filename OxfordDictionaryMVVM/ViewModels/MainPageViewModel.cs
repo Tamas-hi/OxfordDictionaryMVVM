@@ -10,8 +10,10 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Microsoft.CSharp.RuntimeBinder;
 
-namespace OxfordDictionaryMVVM.ViewModels {
-    public class MainPageViewModel : ViewModelBase {
+namespace OxfordDictionaryMVVM.ViewModels
+{
+    public class MainPageViewModel : ViewModelBase
+    {
 
         public DelegateCommand StartCommand { get; }
         public DelegateCommand AboutCommand { get; }
@@ -22,16 +24,20 @@ namespace OxfordDictionaryMVVM.ViewModels {
         public Image MyImage
         {
             get { return image; }
-            set { image = value;
+            set
+            {
+                image = value;
                 RaisePropertyChanged("Image");
             }
         }
 
-        public MainPageViewModel() {
+        public MainPageViewModel()
+        {
             StartCommand = new DelegateCommand(StartNow);
             AboutCommand = new DelegateCommand(AboutWindow);
             ImageCommand = new DelegateCommand(Tapped);
-            if (Windows.ApplicationModel.DesignMode.DesignModeEnabled) {
+            if (Windows.ApplicationModel.DesignMode.DesignModeEnabled)
+            {
                 Value = "Designtime value";
             }
         }
@@ -73,21 +79,26 @@ namespace OxfordDictionaryMVVM.ViewModels {
         string _Value = "Gas";
         public string Value { get { return _Value; } set { Set(ref _Value, value); } }
 
-        public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState) {
-            if (suspensionState.Any()) {
+        public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
+        {
+            if (suspensionState.Any())
+            {
                 Value = suspensionState[nameof(Value)]?.ToString();
             }
             await Task.CompletedTask;
         }
 
-        public override async Task OnNavigatedFromAsync(IDictionary<string, object> suspensionState, bool suspending) {
-            if (suspending) {
+        public override async Task OnNavigatedFromAsync(IDictionary<string, object> suspensionState, bool suspending)
+        {
+            if (suspending)
+            {
                 suspensionState[nameof(Value)] = Value;
             }
             await Task.CompletedTask;
         }
 
-        public override async Task OnNavigatingFromAsync(NavigatingEventArgs args) {
+        public override async Task OnNavigatingFromAsync(NavigatingEventArgs args)
+        {
             args.Cancel = false;
             await Task.CompletedTask;
         }

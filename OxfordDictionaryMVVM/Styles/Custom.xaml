@@ -51,7 +51,7 @@
 
         </ResourceDictionary>
 
-        <ResourceDictionary x:Key="HighContrast">
+        <!--<ResourceDictionary x:Key="HighContrast">
 
             <SolidColorBrush x:Key="ExtendedSplashBackground" Color="Black" />
             <SolidColorBrush x:Key="ExtendedSplashForeground" Color="White" />
@@ -76,6 +76,6 @@
                 <Setter Property="VisualStateNormalMinWidth" Value="{ThemeResource NormalMinWidth}" />
             </Style>
 
-        </ResourceDictionary>
+        </ResourceDictionary>-->
     </ResourceDictionary.ThemeDictionaries>
 </ResourceDictionary>
