@@ -13,6 +13,7 @@ namespace OxfordDictionaryMVVM.Services.SettingsServices
         {
             _helper = new Template10.Services.SettingsService.SettingsHelper();
         }
+
         /// <summary>
         /// Template 10 Minimal template - Example of a setting that can be changed from a view model
         /// </summary>

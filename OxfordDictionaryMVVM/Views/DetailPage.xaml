@@ -7,6 +7,7 @@
       xmlns:controls="using:Template10.Controls"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="using:OxfordDictionaryMVVM.Views"
+      xmlns:converter="using:OxfordDictionaryMVVM.Converters"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:vm="using:OxfordDictionaryMVVM.ViewModels" x:Name="ThisPage"
       mc:Ignorable="d">
@@ -15,24 +16,100 @@
         <vm:DetailPageViewModel x:Name="ViewModel" />
     </Page.DataContext>
 
-    <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <converter:LanguageConverter x:Key="LanguageConverter"/>
+    </Page.Resources>
+    <ScrollViewer>
+        <StackPanel Background="#0078d7">
 
-        <controls:PageHeader x:Name="pageHeader" RelativePanel.AlignLeftWithPanel="True"
+            <controls:PageHeader x:Name="pageHeader" RelativePanel.AlignLeftWithPanel="True"
                              RelativePanel.AlignRightWithPanel="True"
                              RelativePanel.AlignTopWithPanel="True" Text="Welcome!" Grid.Row="0" Grid.ColumnSpan="3">
-        </controls:PageHeader>
+            </controls:PageHeader>
 
-        <!--  content  -->
-        <ScrollViewer Padding="12,8,0,0" RelativePanel.AlignBottomWithPanel="True"
-                      RelativePanel.AlignLeftWithPanel="True"
-                      RelativePanel.AlignRightWithPanel="True"
-                      RelativePanel.Below="pageHeader"
-                      VerticalScrollBarVisibility="Auto">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <ComboBox PlaceholderText="Source language"/>
-                <ComboBox PlaceholderText="Destination language"/>
+
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0 40 0 0">
+                <TextBlock Name="FirstMessage" Text="Set the source language first, then the destination one!" HorizontalAlignment="Center" FontWeight="Bold"/>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <ComboBox PlaceholderText="Source language" ItemsSource="{Binding AllLanguages, Converter={StaticResource LanguageConverter}}"
+                           DisplayMemberPath="sourceLanguage.language"
+                          SelectedValuePath="sourceLanguage.id"
+                          SelectedValue="{Binding SelectedSource, Mode=TwoWay}"
+                              />
+
+                    <ComboBox PlaceholderText="Target language"
+                          ItemsSource="{Binding DestinationLanguages}"
+                          DisplayMemberPath="targetLanguage.language"
+                          SelectedValuePath="targetLanguage.id"
+                          SelectedValue="{Binding SelectedDestination, Mode=TwoWay}"/>
+
+                </StackPanel>
+                <TextBox Name="myText" PlaceholderText="Enter your word here!" Width="350" Margin="30 0 30 0"></TextBox>
+                
             </StackPanel>
-        </ScrollViewer>
+            <Grid HorizontalAlignment="Center" Margin="0 10 0 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="58.466"/>
+                    <ColumnDefinition Width="85.534"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="What would you like to do? Choose an option!" HorizontalAlignment="Center" FontWeight="Bold" Margin="0,0,0,10" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3"></TextBlock>
+                <Button Background="Transparent" Grid.Row="1" Grid.Column="0" VerticalAlignment="Stretch" Command="{Binding TranslateCommand}"
+                            CommandParameter="{Binding ElementName=myText, Path=Text}">
+                    <StackPanel>
+                        <Border CornerRadius="10" 
+                                    Background="Transparent" 
+                                    BorderBrush="White" 
+                                    BorderThickness="3">
+                            <TextBlock Text="Translate word" Margin="10" Foreground="White"/>
+                        </Border>
+                    </StackPanel>
+                </Button>
+                <Button  Background="Transparent" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Command="{Binding AntonymCommand}" CommandParameter="{Binding ElementName=myText, Path=Text}" Grid.ColumnSpan="2">
+                    <StackPanel>
+                        <Border CornerRadius="10" 
+                                    Background="Transparent" 
+                                    BorderBrush="White" 
+                                    BorderThickness="3">
+                            <TextBlock Text="Find antonyms" Margin="10" Foreground="White"/>
+                        </Border>
+                    </StackPanel>
+                </Button>
+                <Button Background="Transparent" Grid.Row="2" Grid.Column="0" Command="{Binding SynonymCommand}" CommandParameter="{Binding ElementName=myText, Path=Text}">
+                    <StackPanel>
+                        <Border CornerRadius="10" 
+                                    Background="Transparent" 
+                                    BorderBrush="White" 
+                                    BorderThickness="3">
+                            <TextBlock Text="Find synonyms" Margin="10" Foreground="White"/>
+                        </Border>
+                    </StackPanel>
+                </Button>
+                <Button Background="Transparent" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Command="{Binding SentencesCommand}" CommandParameter="{Binding ElementName=myText, Path=Text}">
+                    <StackPanel>
+                        <Border CornerRadius="10" 
+                                    Background="Transparent" 
+                                    BorderBrush="White" 
+                                    BorderThickness="3">
+                            <TextBlock Text="Find sentences" Margin="10" Foreground="White"/>
+                        </Border>
+                    </StackPanel>
+                </Button>
+            </Grid>
 
-    </RelativePanel>
+            <ListView ItemsSource="{Binding AntonymResults}" HorizontalAlignment="Center"/>
+
+            <ListView ItemsSource="{Binding SynonymResults}" HorizontalAlignment="Center"/>
+
+            <ListView ItemsSource="{Binding TranslationResults}" HorizontalAlignment="Center"/>
+
+            <ListView ItemsSource="{Binding SentencesResult}" HorizontalAlignment="Center"/>
+        </StackPanel>
+    </ScrollViewer>
 </Page>
