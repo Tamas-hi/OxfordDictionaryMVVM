@@ -64,7 +64,6 @@ namespace OxfordDictionaryMVVM.ViewModels {
             SentencesCommand = new DelegateCommand<string>(SentenceClick);
         }
 
-
         private async void SentenceClick(string obj) {
             var service = new OxfordDictionaryMVVMService();
 

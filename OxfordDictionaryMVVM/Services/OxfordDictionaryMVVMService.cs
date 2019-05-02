@@ -25,7 +25,6 @@ namespace OxfordDictionaryMVVM.Services {
         /// <returns>The needed data or null</returns>
         private async Task<T> GetAsync<T>(Uri uri) where T : class {
             using (var client = new HttpClient()) {
-                client.DefaultRequestHeaders.Add("Accept", "application/json");
                 client.DefaultRequestHeaders.Add("app_id", "737bf108");
                 client.DefaultRequestHeaders.Add("app_key", "5f69062e1685769a904ffaa7c56b34cb");
                 var response = await client.GetAsync(uri);
