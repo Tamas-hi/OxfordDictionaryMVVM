@@ -70,21 +70,6 @@
 
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="AdaptiveVisualStateGroup">
-                <!--<VisualState x:Name="VisualStateNarrow">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="{StaticResource NarrowMinWidth}" />
-                    </VisualState.StateTriggers>
-                </VisualState>
-                <VisualState x:Name="VisualStateNormal">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="{StaticResource NormalMinWidth}" />
-                    </VisualState.StateTriggers>
-                </VisualState>
-                <VisualState x:Name="VisualStateWide">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="{StaticResource WideMinWidth}" />
-                    </VisualState.StateTriggers>
-                </VisualState>-->
                 <VisualState x:Name="test">
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowHeight="500" />
@@ -100,36 +85,6 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-
-
-
-        <!--<controls:Resizer x:Name="parameterResizer" Margin="16,16,16,0"
-                          RelativePanel.AlignLeftWithPanel="True"
-                          RelativePanel.Below="pageHeader"/>-->
-
-        <!--<TextBox MinWidth="150" MinHeight="62"
-                     Header="Parameter to pass"
-                     Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                     TextWrapping="Wrap">
-                <Interactivity:Interaction.Behaviors>
-                    
-            <!enable submit on enter key
-        
-                    <Behaviors:KeyBehavior Key="Enter">
-                        <Core:CallMethodAction MethodName="GotoDetailsPage" TargetObject="{Binding}" />
-                    </Behaviors:KeyBehavior>
-                    
-        focus on textbox when page loads
-        
-                    <Core:EventTriggerBehavior>
-                        <Behaviors:FocusAction />
-                    </Core:EventTriggerBehavior>
-                </Interactivity:Interaction.Behaviors>
-            </TextBox>
-
-        </controls:Resizer>-->
-
-
     </Grid>
 
 </Page>

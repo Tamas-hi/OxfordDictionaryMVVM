@@ -101,7 +101,7 @@
     </Compile>
     <Compile Include="Models\Languages.cs" />
     <Compile Include="Models\Sentences.cs" />
-    <Compile Include="Models\Thesaurus.cs" />
+    <Compile Include="Models\SynonymsAndAntonyms.cs" />
     <Compile Include="Models\Translations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\OxfordDictionaryMVVMService.cs" />

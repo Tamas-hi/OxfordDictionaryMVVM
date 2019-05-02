@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace OxfordDictionaryMVVM.Models
 {
-
+    /// <summary>
+    /// Fetch the needed data from API to list example sentences.
+    /// </summary>
     public class Sentences
     {
         public Metadata metadata { get; set; }

@@ -7,6 +7,9 @@ using Windows.UI.Xaml;
 
 namespace OxfordDictionaryMVVM.ViewModels
 {
+    /// <summary>
+    /// Template10 Minimal Template - logics behind settings page.
+    /// </summary>
     public class SettingsPageViewModel : ViewModelBase
     {
         public SettingsPartViewModel SettingsPartViewModel { get; } = new SettingsPartViewModel();
@@ -17,6 +20,9 @@ namespace OxfordDictionaryMVVM.ViewModels
     {
         Services.SettingsServices.SettingsService _settings;
 
+        /// <summary>
+        /// Constructor responsible for basic settings.
+        /// </summary>
         public SettingsPartViewModel()
         {
             if (Windows.ApplicationModel.DesignMode.DesignModeEnabled)
@@ -29,12 +35,18 @@ namespace OxfordDictionaryMVVM.ViewModels
             }
         }
 
+        /// <summary>
+        /// Method signals if we use ShellSackButton.
+        /// </summary>
         public bool UseShellBackButton
         {
             get { return _settings.UseShellBackButton; }
             set { _settings.UseShellBackButton = value; base.RaisePropertyChanged(); }
         }
 
+        /// <summary>
+        /// Method signal if we use Light theme.
+        /// </summary>
         public bool UseLightThemeButton
         {
             get { return _settings.AppTheme.Equals(ApplicationTheme.Light); }
@@ -42,6 +54,9 @@ namespace OxfordDictionaryMVVM.ViewModels
         }
     }
 
+    /// <summary>
+    /// Logics behin About Tab of settings page.
+    /// </summary>
     public class AboutPartViewModel : ViewModelBase
     {
         public Uri Logo => Windows.ApplicationModel.Package.Current.Logo;

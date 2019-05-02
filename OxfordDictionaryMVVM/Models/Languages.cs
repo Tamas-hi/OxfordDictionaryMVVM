@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 namespace OxfordDictionaryMVVM.Models {
 
     /// <summary>
-    /// Fetch all data from Oxford Dictionaires API to list languages.
+    /// Fetch all data from API to list languages.
     /// </summary>
     public class Languages {
         public Metadata metadata { get; set; }
-        public List<Result> results { get; set; }
+        public Result[] results { get; set; }
     }
 
     /// <summary>

@@ -15,19 +15,16 @@ namespace OxfordDictionaryMVVM.Converters
     public class LanguageConverter : IValueConverter
     {
         /// <summary>
-        /// This method makes the conversion to seperate languages.
+        /// This method makes the conversion to seperate languages. Without it, languages that has multiple target language will be shown many times.
         /// </summary>
         /// <param name="value">The value that needs to be converted.</param>
         /// <param name="targetType">The type of the controller's property.</param>
         /// <param name="parameter">Optional extra parameter.</param>
-        /// <param name="language">Culture information for localization.</param>
+        /// <param name="language">Culture information for localization, optional.</param>
         /// <returns>Languages in converted form</returns>
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            
-            var results = value as List<Result>;
-
-
+            var results = value as ICollection<Result>;
 
             var temp = from r in results
                        group r by r.sourceLanguage.id into s
@@ -37,17 +34,6 @@ namespace OxfordDictionaryMVVM.Converters
             var separateLanguages = temp.ToList();
 
             return separateLanguages;
-
-            /*var values = value as ICollection<Result>;
-            if (values == null)
-                return null;
-
-            List<Result> distinctBySource = values
-                .GroupBy(lang => lang.sourceLanguage.id)
-                .Select(group => group.First())
-                .ToList();
-
-            return distinctBySource;*/
         }
 
         /// <summary>
@@ -56,7 +42,7 @@ namespace OxfordDictionaryMVVM.Converters
         /// <param name="value">The value that needs to be converted.</param>
         /// <param name="targetType">The type of the controller's property.</param>
         /// <param name="parameter">Optional extra parameter.</param>
-        /// <param name="language">Culture information for localization.</param>
+        /// <param name="language">Culture information for localization, optional.</param>
         /// <returns></returns>
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {

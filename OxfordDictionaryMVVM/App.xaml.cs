@@ -14,6 +14,9 @@ namespace OxfordDictionaryMVVM {
 
     [Bindable]
     sealed partial class App : BootStrapper {
+        /// <summary>
+        /// Starting point of application.
+        /// </summary>
         public App() {
             InitializeComponent();
 

@@ -12,6 +12,9 @@ using Microsoft.CSharp.RuntimeBinder;
 
 namespace OxfordDictionaryMVVM.ViewModels
 {
+    /// <summary>
+    /// Welcome Screen - starting point of my application.
+    /// </summary>
     public class MainPageViewModel : ViewModelBase
     {
 
@@ -19,27 +22,14 @@ namespace OxfordDictionaryMVVM.ViewModels
         public DelegateCommand AboutCommand { get; }
         public DelegateCommand ImageCommand { get; }
 
-        private Image image;
-
-        public Image MyImage
-        {
-            get { return image; }
-            set
-            {
-                image = value;
-                RaisePropertyChanged("Image");
-            }
-        }
-
+        /// <summary>
+        /// Constructor used to apply Command pattern.
+        /// </summary>
         public MainPageViewModel()
         {
             StartCommand = new DelegateCommand(StartNow);
             AboutCommand = new DelegateCommand(AboutWindow);
             ImageCommand = new DelegateCommand(Tapped);
-            if (Windows.ApplicationModel.DesignMode.DesignModeEnabled)
-            {
-                Value = "Designtime value";
-            }
         }
 
         private async void Tapped()
@@ -48,15 +38,6 @@ namespace OxfordDictionaryMVVM.ViewModels
             var uri = new Uri(uriToLaunch);
 
             var success = await Windows.System.Launcher.LaunchUriAsync(uri);
-
-            if (success)
-            {
-                // URI launched
-            }
-            else
-            {
-                // URI launch failed
-            }
         }
 
         private async void AboutWindow()
@@ -76,42 +57,38 @@ namespace OxfordDictionaryMVVM.ViewModels
             GotoDetailsPage();
         }
 
-        string _Value = "Gas";
-        public string Value { get { return _Value; } set { Set(ref _Value, value); } }
-
-        public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
-        {
-            if (suspensionState.Any())
-            {
-                Value = suspensionState[nameof(Value)]?.ToString();
-            }
-            await Task.CompletedTask;
-        }
-
-        public override async Task OnNavigatedFromAsync(IDictionary<string, object> suspensionState, bool suspending)
-        {
-            if (suspending)
-            {
-                suspensionState[nameof(Value)] = Value;
-            }
-            await Task.CompletedTask;
-        }
-
+        /// <summary>
+        /// Template 10 Minimal template -  When we navigate elsewhere from here.
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns></returns>
         public override async Task OnNavigatingFromAsync(NavigatingEventArgs args)
         {
             args.Cancel = false;
             await Task.CompletedTask;
         }
 
+        /// <summary>
+        /// Navigate to DetailsPage.
+        /// </summary>
         public void GotoDetailsPage() =>
-            NavigationService.Navigate(typeof(Views.DetailPage), Value);
+            NavigationService.Navigate(typeof(Views.DetailPage));
 
+        /// <summary>
+        /// Navigate to Settings default page.
+        /// </summary>
         public void GotoSettings() =>
             NavigationService.Navigate(typeof(Views.SettingsPage), 0);
 
+        /// <summary>
+        /// Navige to Privacy Tab of Settings page.
+        /// </summary>
         public void GotoPrivacy() =>
             NavigationService.Navigate(typeof(Views.SettingsPage), 1);
 
+        /// <summary>
+        /// Navigate to About Tab of Settings page.
+        /// </summary>
         public void GotoAbout() =>
             NavigationService.Navigate(typeof(Views.SettingsPage), 2);
 
