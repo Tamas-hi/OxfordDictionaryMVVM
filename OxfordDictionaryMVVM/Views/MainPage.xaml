@@ -37,7 +37,7 @@
                     </Core:EventTriggerBehavior>
                 </Interactivity:Interaction.Behaviors>
             </Image>
-            </StackPanel>
+        </StackPanel>
 
         <StackPanel HorizontalAlignment="Center" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" x:Name="ContainerStackPanel">
             <TextBlock Foreground="White" Margin="0 0 0 0" FontSize="40" FontWeight="Bold" HorizontalAlignment="Center" x:Name="TitleTextBlock" Text="Oxford Dictionary"></TextBlock>

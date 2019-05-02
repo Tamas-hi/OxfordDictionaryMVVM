@@ -23,19 +23,18 @@ namespace OxfordDictionaryMVVM.Services {
         /// <typeparam name="T">Type of the returned result.</typeparam>
         /// <param name="uri">The uri to fetch from. </param>
         /// <returns>The needed data or null</returns>
-        private async Task<T> GetAsync<T>(Uri uri) where T: class {
+        private async Task<T> GetAsync<T>(Uri uri) where T : class {
             using (var client = new HttpClient()) {
                 client.DefaultRequestHeaders.Add("Accept", "application/json");
                 client.DefaultRequestHeaders.Add("app_id", "737bf108");
                 client.DefaultRequestHeaders.Add("app_key", "5f69062e1685769a904ffaa7c56b34cb");
                 var response = await client.GetAsync(uri);
-                
+
                 if (response.IsSuccessStatusCode) {
                     var json = await response.Content.ReadAsStringAsync();
                     T result = JsonConvert.DeserializeObject<T>(json);
                     return result;
-                } 
-                else {
+                } else {
                     return null;
                 }
             }
@@ -46,7 +45,7 @@ namespace OxfordDictionaryMVVM.Services {
         /// </summary>
         /// <returns>The languages.</returns>
         public async Task<Languages> GetLanguageAsync() {
-           return await GetAsync<Languages>(new Uri(serverUrl, "/api/v1/languages"));
+            return await GetAsync<Languages>(new Uri(serverUrl, "/api/v1/languages"));
         }
 
         /// <summary>
@@ -86,8 +85,7 @@ namespace OxfordDictionaryMVVM.Services {
         /// <param name="source_lang">Source language.</param>
         /// <param name="word_id">Word ID.</param>
         /// <returns>Example sentences for the appropriate word.</returns>
-        public async Task<Sentences> GetSentenceAsync(string source_lang, string word_id)
-        {
+        public async Task<Sentences> GetSentenceAsync(string source_lang, string word_id) {
             return await GetAsync<Sentences>(new Uri(serverUrl, "api/v1/entries/" + source_lang + "/" + word_id + "/sentences"));
         }
 

@@ -7,13 +7,11 @@ using System.Threading.Tasks;
 using OxfordDictionaryMVVM.Models;
 using Windows.UI.Xaml.Data;
 
-namespace OxfordDictionaryMVVM.Converters
-{
+namespace OxfordDictionaryMVVM.Converters {
     /// <summary>
     /// A basic converter to transform the languages of result.
     /// </summary>
-    public class LanguageConverter : IValueConverter
-    {
+    public class LanguageConverter : IValueConverter {
         /// <summary>
         /// This method makes the conversion to seperate languages. Without it, languages that has multiple target language will be shown many times.
         /// </summary>
@@ -22,8 +20,7 @@ namespace OxfordDictionaryMVVM.Converters
         /// <param name="parameter">Optional extra parameter.</param>
         /// <param name="language">Culture information for localization, optional.</param>
         /// <returns>Languages in converted form</returns>
-        public object Convert(object value, Type targetType, object parameter, string language)
-        {
+        public object Convert(object value, Type targetType, object parameter, string language) {
             var results = value as ICollection<Result>;
 
             var temp = from r in results
@@ -44,8 +41,7 @@ namespace OxfordDictionaryMVVM.Converters
         /// <param name="parameter">Optional extra parameter.</param>
         /// <param name="language">Culture information for localization, optional.</param>
         /// <returns></returns>
-        public object ConvertBack(object value, Type targetType, object parameter, string language)
-        {
+        public object ConvertBack(object value, Type targetType, object parameter, string language) {
             throw new NotImplementedException();
         }
     }

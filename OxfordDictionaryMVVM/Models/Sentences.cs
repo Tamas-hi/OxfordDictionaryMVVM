@@ -4,19 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OxfordDictionaryMVVM.Models
-{
+namespace OxfordDictionaryMVVM.Models {
     /// <summary>
     /// Fetch the needed data from API to list example sentences.
     /// </summary>
-    public class Sentences
-    {
+    public class Sentences {
         public Metadata metadata { get; set; }
         public SentenceResult[] results { get; set; }
     }
 
-    public class SentenceResult
-    {
+    public class SentenceResult {
         public string id { get; set; }
         public string language { get; set; }
         public SentenceLexicalentry[] lexicalEntries { get; set; }
@@ -24,8 +21,7 @@ namespace OxfordDictionaryMVVM.Models
         public string word { get; set; }
     }
 
-    public class SentenceLexicalentry
-    {
+    public class SentenceLexicalentry {
         public SentenceGrammaticalfeature[] grammaticalFeatures { get; set; }
         public string language { get; set; }
         public string lexicalCategory { get; set; }
@@ -33,14 +29,12 @@ namespace OxfordDictionaryMVVM.Models
         public string text { get; set; }
     }
 
-    public class SentenceGrammaticalfeature
-    {
+    public class SentenceGrammaticalfeature {
         public string text { get; set; }
         public string type { get; set; }
     }
 
-    public class Sentence
-    {
+    public class Sentence {
         public string[] definitions { get; set; }
         public string[] domains { get; set; }
         public SentenceNote[] notes { get; set; }
@@ -51,15 +45,13 @@ namespace OxfordDictionaryMVVM.Models
         public Translation[] translations { get; set; }
     }
 
-    public class SentenceNote
-    {
+    public class SentenceNote {
         public string id { get; set; }
         public string text { get; set; }
         public string type { get; set; }
     }
 
-    public class SentenceTranslation
-    {
+    public class SentenceTranslation {
         public string[] domains { get; set; }
         public SentenceGrammaticalfeature1[] grammaticalFeatures { get; set; }
         public string language { get; set; }
@@ -69,14 +61,12 @@ namespace OxfordDictionaryMVVM.Models
         public string text { get; set; }
     }
 
-    public class SentenceGrammaticalfeature1
-    {
+    public class SentenceGrammaticalfeature1 {
         public string text { get; set; }
         public string type { get; set; }
     }
 
-    public class SentenceNote1
-    {
+    public class SentenceNote1 {
         public string id { get; set; }
         public string text { get; set; }
         public string type { get; set; }

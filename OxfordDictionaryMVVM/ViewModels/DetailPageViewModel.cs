@@ -14,13 +14,11 @@ using Template10.Services.NavigationService;
 using Windows.UI.Popups;
 using Windows.UI.Xaml.Navigation;
 
-namespace OxfordDictionaryMVVM.ViewModels
-{
+namespace OxfordDictionaryMVVM.ViewModels {
     /// <summary>
     /// Page of our Dictionary. You can translate, find synoyms - antonyms - sentences here.
     /// </summary>
-    public class DetailPageViewModel : ViewModelBase
-    {
+    public class DetailPageViewModel : ViewModelBase {
 
         public ObservableCollection<Result> AllLanguages { get; set; } = new ObservableCollection<Result>();
         public ObservableCollection<Result> DestinationLanguages { get; set; } = new ObservableCollection<Result>();
@@ -28,7 +26,7 @@ namespace OxfordDictionaryMVVM.ViewModels
         public ObservableCollection<string> Translations { get; set; } = new ObservableCollection<string>();
         public ObservableCollection<string> Synonyms { get; set; } = new ObservableCollection<string>();
         public ObservableCollection<string> Antonyms { get; set; } = new ObservableCollection<string>();
-        public ObservableCollection<string> Sentences{ get; set; } = new ObservableCollection<string>();
+        public ObservableCollection<string> Sentences { get; set; } = new ObservableCollection<string>();
 
         public DelegateCommand<string> TranslateCommand { get; }
         public DelegateCommand<string> SynonymCommand { get; }
@@ -38,20 +36,16 @@ namespace OxfordDictionaryMVVM.ViewModels
         private string chosenSrc;
 
         public string ChosenSrc {
-            get
-            {
+            get {
                 return chosenSrc;
             }
-            set
-            {
+            set {
                 DestinationLanguages.Clear();
                 chosenSrc = value;
-                
+
                 // filling DestinationLanguages with only the languages from allLanguages that has a sourceLanguage.id equivavelent to the chosen source.
-                foreach (var lang in AllLanguages)
-                {
-                    if (lang.sourceLanguage.id == chosenSrc)
-                    {
+                foreach (var lang in AllLanguages) {
+                    if (lang.sourceLanguage.id == chosenSrc) {
                         DestinationLanguages.Add(lang);
                     }
                 }
@@ -71,8 +65,7 @@ namespace OxfordDictionaryMVVM.ViewModels
         }
 
 
-        private async void SentenceClick(string obj)
-        {
+        private async void SentenceClick(string obj) {
             var service = new OxfordDictionaryMVVMService();
 
             Translations.Clear();
@@ -83,21 +76,18 @@ namespace OxfordDictionaryMVVM.ViewModels
             var reply = await service.GetSentenceAsync(chosenSrc, obj);
             Debug.Write(ChosenSrc.ToString());
 
-            if (reply != null)
-            {
-                foreach(var result in reply.results)
-                {
-                    foreach (var lexicalEntry in result.lexicalEntries){
-                        foreach(var sentence in lexicalEntry.sentences)
-                        {
+            if (reply != null) {
+                foreach (var result in reply.results) {
+                    foreach (var lexicalEntry in result.lexicalEntries) {
+                        foreach (var sentence in lexicalEntry.sentences) {
                             Sentences.Add(sentence.text);
                         }
                     }
                 }
             }
-            
+
             // exception handling
-            else if(ChosenSrc.ToString() != "en" && chosenSrc.ToString() != "de") {
+            else if (ChosenSrc.ToString() != "en" && chosenSrc.ToString() != "de") {
                 var messageDialog = new MessageDialog("Sentences are not supported in this language at present.") {
                     Title = "Warning"
                 };
@@ -126,16 +116,11 @@ namespace OxfordDictionaryMVVM.ViewModels
 
             var reply = await service.GetSynonymAsync(chosenSrc, obj);
             if (reply != null) {
-                foreach (var result in reply.results)
-                {
-                    foreach (var lexicalEntry in result.lexicalEntries )
-                    {
-                        foreach (var entry in lexicalEntry.entries)
-                        {
-                            foreach (var sense in entry.senses)
-                            {
-                                foreach (var synonym in sense.synonyms)
-                                {
+                foreach (var result in reply.results) {
+                    foreach (var lexicalEntry in result.lexicalEntries) {
+                        foreach (var entry in lexicalEntry.entries) {
+                            foreach (var sense in entry.senses) {
+                                foreach (var synonym in sense.synonyms) {
                                     Synonyms.Add(synonym.text);
                                 }
                             }
@@ -181,16 +166,11 @@ namespace OxfordDictionaryMVVM.ViewModels
 
             var reply = await service.GetAntonymAsync(chosenSrc, obj);
             if (reply != null) {
-                foreach (var result in reply.results)
-                {
-                    foreach (var lexicalEntry in result.lexicalEntries)
-                    {
-                        foreach (var entry in lexicalEntry.entries)
-                        {
-                            foreach (var sense in entry.senses)
-                            {
-                                foreach (var anonym in sense.antonyms)
-                                {
+                foreach (var result in reply.results) {
+                    foreach (var lexicalEntry in result.lexicalEntries) {
+                        foreach (var entry in lexicalEntry.entries) {
+                            foreach (var sense in entry.senses) {
+                                foreach (var anonym in sense.antonyms) {
                                     Antonyms.Add(anonym.text);
                                 }
                             }
@@ -198,7 +178,7 @@ namespace OxfordDictionaryMVVM.ViewModels
                     }
                 }
             } // exception handling
-            else if(ChosenSrc == null) {
+            else if (ChosenSrc == null) {
                 var messageDialog = new MessageDialog("Choose a source language!") {
                     Title = "Error"
                 };
@@ -206,18 +186,14 @@ namespace OxfordDictionaryMVVM.ViewModels
                 messageDialog.Commands.Add(new UICommand("Close"));
 
                 await messageDialog.ShowAsync();
-            }
-            
-            else if(ChosenSrc.ToString() != "en") {
+            } else if (ChosenSrc.ToString() != "en") {
                 var messageDialog = new MessageDialog("Antonyms are not supported in this language at present.") {
                     Title = "Warning"
                 };
                 messageDialog.Commands.Add(new UICommand("Close"));
 
                 await messageDialog.ShowAsync();
-            }
-            
-            else {
+            } else {
                 var messageDialog = new MessageDialog("There is no antonym for that word!") {
                     Title = "Warning"
                 };
@@ -247,12 +223,9 @@ namespace OxfordDictionaryMVVM.ViewModels
             if (reply != null) {
                 foreach (var result in reply.results) {
                     foreach (var lexicalEntry in result.lexicalEntries) {
-                        foreach (var entry in lexicalEntry.entries)
-                        {
-                            foreach(var sense in entry.senses)
-                            {
-                                foreach(var translation in sense.translations ?? Enumerable.Empty<Translation1>())
-                                {
+                        foreach (var entry in lexicalEntry.entries) {
+                            foreach (var sense in entry.senses) {
+                                foreach (var translation in sense.translations ?? Enumerable.Empty<Translation1>()) {
                                     Translations.Add(translation.text);
                                 }
                             }
@@ -260,7 +233,7 @@ namespace OxfordDictionaryMVVM.ViewModels
                     }
                 }
             } // exception handling
-            else if(ChosenSrc == null) {
+            else if (ChosenSrc == null) {
                 var messageDialog = new MessageDialog("Choose a source language!") {
                     Title = "Error"
                 };
@@ -268,8 +241,7 @@ namespace OxfordDictionaryMVVM.ViewModels
                 messageDialog.Commands.Add(new UICommand("Close"));
 
                 await messageDialog.ShowAsync();
-            }
-            else if (ChosenDest == null) {
+            } else if (ChosenDest == null) {
                 var messageDialog = new MessageDialog("Choose a destination language!") {
                     Title = "Error"
                 };
@@ -297,18 +269,15 @@ namespace OxfordDictionaryMVVM.ViewModels
         /// <param name="mode"></param>
         /// <param name="suspensionState"></param>
         /// <returns></returns>
-        public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
-        {
+        public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState) {
 
-           var service = new OxfordDictionaryMVVMService();
-           var languages = await service.GetLanguageAsync();
-           var results = languages.results;
+            var service = new OxfordDictionaryMVVMService();
+            var languages = await service.GetLanguageAsync();
+            var results = languages.results;
 
-            foreach (var lang in results)
-            {
+            foreach (var lang in results) {
                 // load only those, which has source and target language too
-                if (lang.sourceLanguage != null && lang.targetLanguage != null)
-                {
+                if (lang.sourceLanguage != null && lang.targetLanguage != null) {
                     AllLanguages.Add(lang);
                 }
 
@@ -325,8 +294,7 @@ namespace OxfordDictionaryMVVM.ViewModels
         /// <param name="suspensionState"></param>
         /// <param name="suspending"></param>
         /// <returns></returns>
-        public override async Task OnNavigatedFromAsync(IDictionary<string, object> suspensionState, bool suspending)
-        {
+        public override async Task OnNavigatedFromAsync(IDictionary<string, object> suspensionState, bool suspending) {
             await Task.CompletedTask;
         }
 
@@ -336,8 +304,7 @@ namespace OxfordDictionaryMVVM.ViewModels
         /// <param name="suspensionState"></param>
         /// <param name="suspending"></param>
         /// <returns></returns>
-        public override async Task OnNavigatingFromAsync(NavigatingEventArgs args)
-        {
+        public override async Task OnNavigatingFromAsync(NavigatingEventArgs args) {
             args.Cancel = false;
             await Task.CompletedTask;
         }
