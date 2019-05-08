@@ -24,7 +24,7 @@ namespace OxfordDictionaryMVVM {
 
             // some settings must be set in app.constructor
             var settings = SettingsService.Instance;
-            RequestedTheme = ApplicationTheme.Dark;
+            RequestedTheme = ApplicationTheme.Light;
             ShowShellBackButton = settings.UseShellBackButton;
 
             #endregion

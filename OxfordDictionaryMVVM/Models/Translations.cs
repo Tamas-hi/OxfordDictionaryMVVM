@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace OxfordDictionaryMVVM.Models {
-
+﻿namespace OxfordDictionaryMVVM.Models
+{
     /// <summary>
     /// Fetch all data from Oxford Dictionaires API to translate.
     /// </summary>
-    public class Translations {
+    public class Translations
+    {
         public Metadata metadata { get; set; }
         public Result2[] results { get; set; }
     }
 
-    public class Result2 {
+    public class Result2
+    {
         public string id { get; set; }
         public string language { get; set; }
         public Lexicalentry[] lexicalEntries { get; set; }
@@ -23,7 +19,8 @@ namespace OxfordDictionaryMVVM.Models {
         public string word { get; set; }
     }
 
-    public class Lexicalentry {
+    public class Lexicalentry
+    {
         public Derivativeof[] derivativeOf { get; set; }
         public Derivative[] derivatives { get; set; }
         public Entry[] entries { get; set; }
@@ -36,7 +33,8 @@ namespace OxfordDictionaryMVVM.Models {
         public Variantform2[] variantForms { get; set; }
     }
 
-    public class Derivativeof {
+    public class Derivativeof
+    {
         public string[] domains { get; set; }
         public string id { get; set; }
         public string language { get; set; }
@@ -45,7 +43,8 @@ namespace OxfordDictionaryMVVM.Models {
         public string text { get; set; }
     }
 
-    public class Derivative {
+    public class Derivative
+    {
         public string[] domains { get; set; }
         public string id { get; set; }
         public string language { get; set; }
@@ -54,7 +53,8 @@ namespace OxfordDictionaryMVVM.Models {
         public string text { get; set; }
     }
 
-    public class Entry {
+    public class Entry
+    {
         public string[] etymologies { get; set; }
         public Grammaticalfeature[] grammaticalFeatures { get; set; }
         public string homographNumber { get; set; }
@@ -64,18 +64,21 @@ namespace OxfordDictionaryMVVM.Models {
         public Variantform1[] variantForms { get; set; }
     }
 
-    public class Grammaticalfeature {
+    public class Grammaticalfeature
+    {
         public string text { get; set; }
         public string type { get; set; }
     }
 
-    public class Note {
+    public class Note
+    {
         public string id { get; set; }
         public string text { get; set; }
         public string type { get; set; }
     }
 
-    public class Pronunciation {
+    public class Pronunciation
+    {
         public string audioFile { get; set; }
         public string[] dialects { get; set; }
         public string phoneticNotation { get; set; }
@@ -83,7 +86,8 @@ namespace OxfordDictionaryMVVM.Models {
         public string[] regions { get; set; }
     }
 
-    public class Sens {
+    public class Sens
+    {
         public string[] crossReferenceMarkers { get; set; }
         public Crossreference[] crossReferences { get; set; }
         public string[] definitions { get; set; }
@@ -101,13 +105,15 @@ namespace OxfordDictionaryMVVM.Models {
         public Variantform[] variantForms { get; set; }
     }
 
-    public class Crossreference {
+    public class Crossreference
+    {
         public string id { get; set; }
         public string text { get; set; }
         public string type { get; set; }
     }
 
-    public class Example {
+    public class Example
+    {
         public string[] definitions { get; set; }
         public string[] domains { get; set; }
         public Note1[] notes { get; set; }
@@ -118,13 +124,15 @@ namespace OxfordDictionaryMVVM.Models {
         public Translation[] translations { get; set; }
     }
 
-    public class Note1 {
+    public class Note1
+    {
         public string id { get; set; }
         public string text { get; set; }
         public string type { get; set; }
     }
 
-    public class Translation {
+    public class Translation
+    {
         public string[] domains { get; set; }
         public Grammaticalfeature1[] grammaticalFeatures { get; set; }
         public string language { get; set; }
@@ -134,24 +142,28 @@ namespace OxfordDictionaryMVVM.Models {
         public string text { get; set; }
     }
 
-    public class Grammaticalfeature1 {
+    public class Grammaticalfeature1
+    {
         public string text { get; set; }
         public string type { get; set; }
     }
 
-    public class Note2 {
+    public class Note2
+    {
         public string id { get; set; }
         public string text { get; set; }
         public string type { get; set; }
     }
 
-    public class Note3 {
+    public class Note3
+    {
         public string id { get; set; }
         public string text { get; set; }
         public string type { get; set; }
     }
 
-    public class Pronunciation1 {
+    public class Pronunciation1
+    {
         public string audioFile { get; set; }
         public string[] dialects { get; set; }
         public string phoneticNotation { get; set; }
@@ -159,15 +171,18 @@ namespace OxfordDictionaryMVVM.Models {
         public string[] regions { get; set; }
     }
 
-    public class Subsens {
+    public class Subsens
+    {
     }
 
-    public class Thesauruslink {
+    public class Thesauruslink
+    {
         public string entry_id { get; set; }
         public string sense_id { get; set; }
     }
 
-    public class Translation1 {
+    public class Translation1
+    {
         public string[] domains { get; set; }
         public Grammaticalfeature2[] grammaticalFeatures { get; set; }
         public string language { get; set; }
@@ -177,39 +192,46 @@ namespace OxfordDictionaryMVVM.Models {
         public string text { get; set; }
     }
 
-    public class Grammaticalfeature2 {
+    public class Grammaticalfeature2
+    {
         public string text { get; set; }
         public string type { get; set; }
     }
 
-    public class Note4 {
+    public class Note4
+    {
         public string id { get; set; }
         public string text { get; set; }
         public string type { get; set; }
     }
 
-    public class Variantform {
+    public class Variantform
+    {
         public string[] regions { get; set; }
         public string text { get; set; }
     }
 
-    public class Variantform1 {
+    public class Variantform1
+    {
         public string[] regions { get; set; }
         public string text { get; set; }
     }
 
-    public class Grammaticalfeature3 {
+    public class Grammaticalfeature3
+    {
         public string text { get; set; }
         public string type { get; set; }
     }
 
-    public class Note5 {
+    public class Note5
+    {
         public string id { get; set; }
         public string text { get; set; }
         public string type { get; set; }
     }
 
-    public class Pronunciation2 {
+    public class Pronunciation2
+    {
         public string audioFile { get; set; }
         public string[] dialects { get; set; }
         public string phoneticNotation { get; set; }
@@ -217,12 +239,14 @@ namespace OxfordDictionaryMVVM.Models {
         public string[] regions { get; set; }
     }
 
-    public class Variantform2 {
+    public class Variantform2
+    {
         public string[] regions { get; set; }
         public string text { get; set; }
     }
 
-    public class Pronunciation3 {
+    public class Pronunciation3
+    {
         public string audioFile { get; set; }
         public string[] dialects { get; set; }
         public string phoneticNotation { get; set; }

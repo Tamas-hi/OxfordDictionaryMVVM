@@ -1,20 +1,16 @@
 ﻿using Template10.Mvvm;
-using System.Collections.Generic;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 using Template10.Services.NavigationService;
-using Windows.UI.Xaml.Navigation;
 using Windows.UI.Popups;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media;
-using Microsoft.CSharp.RuntimeBinder;
 
-namespace OxfordDictionaryMVVM.ViewModels {
+namespace OxfordDictionaryMVVM.ViewModels
+{
     /// <summary>
-    /// Welcome Screen - starting point of my application.
+    /// Welcome Screen - starting point of application.
     /// </summary>
-    public class MainPageViewModel : ViewModelBase {
+    public class MainPageViewModel : ViewModelBase
+    {
 
         public DelegateCommand StartCommand { get; }
         public DelegateCommand AboutCommand { get; }
@@ -23,21 +19,25 @@ namespace OxfordDictionaryMVVM.ViewModels {
         /// <summary>
         /// Constructor used to apply Command pattern.
         /// </summary>
-        public MainPageViewModel() {
+        public MainPageViewModel()
+        {
             StartCommand = new DelegateCommand(StartNow);
             AboutCommand = new DelegateCommand(AboutWindow);
             ImageCommand = new DelegateCommand(Tapped);
         }
 
-        private async void Tapped() {
+        private async void Tapped()
+        {
             string uriToLaunch = @"http://www.github.com/hargitomi97/OxfordDictionaryMVVM";
             var uri = new Uri(uriToLaunch);
 
             var success = await Windows.System.Launcher.LaunchUriAsync(uri);
         }
 
-        private async void AboutWindow() {
-            var messageDialog = new MessageDialog("OxfordDictionary is a Universal Windows Platform (UWP) application where you can translate words, find synonyms and antonyms. This application is strongly follows Model-ViewModel-Model approach (MVVM) and uses Template10 framework.") {
+        private async void AboutWindow()
+        {
+            var messageDialog = new MessageDialog("OxfordDictionary is a Universal Windows Platform (UWP) application where you can translate words, find synonyms and antonyms. This application is strongly follows Model-ViewModel-Model approach (MVVM) and uses Template10 framework.")
+            {
                 Title = "Information"
             };
 
@@ -46,7 +46,8 @@ namespace OxfordDictionaryMVVM.ViewModels {
             await messageDialog.ShowAsync();
         }
 
-        private void StartNow() {
+        private void StartNow()
+        {
             GotoDetailsPage();
         }
 
@@ -55,7 +56,8 @@ namespace OxfordDictionaryMVVM.ViewModels {
         /// </summary>
         /// <param name="args"></param>
         /// <returns></returns>
-        public override async Task OnNavigatingFromAsync(NavigatingEventArgs args) {
+        public override async Task OnNavigatingFromAsync(NavigatingEventArgs args)
+        {
             args.Cancel = false;
             await Task.CompletedTask;
         }

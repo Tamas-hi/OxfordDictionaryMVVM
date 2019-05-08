@@ -1,12 +1,8 @@
 ﻿<Page x:Class="OxfordDictionaryMVVM.Views.DetailPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:Behaviors="using:Template10.Behaviors"
-      xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
-      xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
       xmlns:controls="using:Template10.Controls"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:local="using:OxfordDictionaryMVVM.Views"
       xmlns:converter="using:OxfordDictionaryMVVM.Converters"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:vm="using:OxfordDictionaryMVVM.ViewModels" x:Name="ThisPage"
@@ -15,9 +11,8 @@
     <Page.DataContext>
         <vm:DetailPageViewModel x:Name="ViewModel" />
     </Page.DataContext>
-
     <Page.Resources>
-        <converter:LanguageConverter x:Key="LanguageConverter"/>
+        <converter:LanguagesToSeparateConverter x:Key="LanguagesToSeparateConverter"/>
     </Page.Resources>
 
     <ScrollViewer>
@@ -25,19 +20,16 @@
 
             <controls:PageHeader Text="Welcome!" Grid.Row="0" Grid.ColumnSpan="3"></controls:PageHeader>
 
-
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0 40 0 0">
                 <TextBlock Name="FirstMessage" Text="Set the source language first, then the destination one!" HorizontalAlignment="Center" FontWeight="Bold" Margin="0 0 0 30"/>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                     <ComboBox PlaceholderText="Source language" 
                               Width="190"
-                          ItemsSource="{Binding AllLanguages, Converter={StaticResource LanguageConverter}}"
+                          ItemsSource="{Binding AllLanguages, Converter={StaticResource LanguagesToSeparateConverter}}"
                           SelectedValue="{Binding ChosenSrc, Mode=TwoWay}"
                           DisplayMemberPath="sourceLanguage.language"
-                          SelectedValuePath="sourceLanguage.id"
-                         
-                              />
+                          SelectedValuePath="sourceLanguage.id"/>
                     <TextBox Name="myTextBlock" PlaceholderText="Enter your word here!" Width="350" Margin="30 0 30 0"></TextBox>
                     <ComboBox PlaceholderText="Destination language"
                           Width="190"
@@ -47,7 +39,6 @@
                           SelectedValuePath="targetLanguage.id"
                           />
                 </StackPanel>
-
 
             </StackPanel>
             <Grid HorizontalAlignment="Center" Margin="0 10 0 0">

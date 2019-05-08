@@ -1,17 +1,16 @@
-﻿using System.Collections.Generic;
-using OxfordDictionaryMVVM.Models;
-
-namespace Oxfordify.Models {
-
+﻿namespace OxfordDictionaryMVVM.Models
+{
     /// <summary>
     /// Fetch the needed data from API to list synonyms and antonyms.
     /// </summary>
-    public class SynonymsAndAntonyms {
+    public class SynonymsAndAntonyms
+    {
         public Metadata metadata { get; set; }
         public SAAResult[] results { get; set; }
     }
 
-    public class SAAResult {
+    public class SAAResult
+    {
         public string id { get; set; }
         public string language { get; set; }
         public SAALexicalentry[] lexicalEntries { get; set; }
@@ -19,7 +18,8 @@ namespace Oxfordify.Models {
         public string word { get; set; }
     }
 
-    public class SAALexicalentry {
+    public class SAALexicalentry
+    {
         public SAAEntry[] entries { get; set; }
         public string language { get; set; }
         public string lexicalCategory { get; set; }
@@ -27,13 +27,15 @@ namespace Oxfordify.Models {
         public SAAVariantform1[] variantForms { get; set; }
     }
 
-    public class SAAEntry {
+    public class SAAEntry
+    {
         public string homographNumber { get; set; }
         public SAASens[] senses { get; set; }
         public SAAVariantform[] variantForms { get; set; }
     }
 
-    public class SAASens {
+    public class SAASens
+    {
         public Antonym[] antonyms { get; set; }
         public string[] domains { get; set; }
         public SAAExample[] examples { get; set; }
@@ -44,7 +46,8 @@ namespace Oxfordify.Models {
         public Synonym[] synonyms { get; set; }
     }
 
-    public class Antonym {
+    public class Antonym
+    {
         public string[] domains { get; set; }
         public string id { get; set; }
         public string language { get; set; }
@@ -53,7 +56,8 @@ namespace Oxfordify.Models {
         public string text { get; set; }
     }
 
-    public class SAAExample {
+    public class SAAExample
+    {
         public string[] definitions { get; set; }
         public string[] domains { get; set; }
         public SAANote[] notes { get; set; }
@@ -64,13 +68,15 @@ namespace Oxfordify.Models {
         public SAATranslation[] translations { get; set; }
     }
 
-    public class SAANote {
+    public class SAANote
+    {
         public string id { get; set; }
         public string text { get; set; }
         public string type { get; set; }
     }
 
-    public class SAATranslation {
+    public class SAATranslation
+    {
         public string[] domains { get; set; }
         public SAAGrammaticalfeature[] grammaticalFeatures { get; set; }
         public string language { get; set; }
@@ -80,21 +86,25 @@ namespace Oxfordify.Models {
         public string text { get; set; }
     }
 
-    public class SAAGrammaticalfeature {
+    public class SAAGrammaticalfeature
+    {
         public string text { get; set; }
         public string type { get; set; }
     }
 
-    public class SAANote1 {
+    public class SAANote1
+    {
         public string id { get; set; }
         public string text { get; set; }
         public string type { get; set; }
     }
 
-    public class SAASubsens {
+    public class SAASubsens
+    {
     }
 
-    public class Synonym {
+    public class Synonym
+    {
         public string[] domains { get; set; }
         public string id { get; set; }
         public string language { get; set; }
@@ -103,12 +113,14 @@ namespace Oxfordify.Models {
         public string text { get; set; }
     }
 
-    public class SAAVariantform {
+    public class SAAVariantform
+    {
         public string[] regions { get; set; }
         public string text { get; set; }
     }
 
-    public class SAAVariantform1 {
+    public class SAAVariantform1
+    {
         public string[] regions { get; set; }
         public string text { get; set; }
     }
