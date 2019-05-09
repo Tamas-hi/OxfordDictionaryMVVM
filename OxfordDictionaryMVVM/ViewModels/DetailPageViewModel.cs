@@ -12,7 +12,7 @@ using Windows.UI.Xaml.Navigation;
 namespace OxfordDictionaryMVVM.ViewModels
 {
     /// <summary>
-    /// Page of our Dictionary. You can translate, find synoyms - antonyms - sentences here.
+    /// Page of our Dictionary. You can translate, find synonyms - antonyms - sentences here.
     /// </summary>
     public class DetailPageViewModel : ViewModelBase
     {
@@ -66,14 +66,12 @@ namespace OxfordDictionaryMVVM.ViewModels
 
         private async void SentenceClick(string obj)
         {
-            var service = new OxfordDictionaryMVVMService();
-
             Translations.Clear();
             Synonyms.Clear();
             Antonyms.Clear();
             Sentences.Clear();
 
-            var reply = await service.GetSentenceAsync(chosenSrc, obj);
+            var reply = await new OxfordDictionaryMVVMService().GetSentenceAsync(chosenSrc, obj);
 
             if (reply != null)
             {
@@ -115,14 +113,12 @@ namespace OxfordDictionaryMVVM.ViewModels
 
         private async void SynonymClick(string obj)
         {
-            var service = new OxfordDictionaryMVVMService();
-
             Translations.Clear();
             Synonyms.Clear();
             Antonyms.Clear();
             Sentences.Clear();
 
-            var reply = await service.GetSynonymAsync(chosenSrc, obj);
+            var reply = await new OxfordDictionaryMVVMService().GetSynonymAsync(chosenSrc, obj);
 
             if (reply != null)
             {
@@ -181,14 +177,12 @@ namespace OxfordDictionaryMVVM.ViewModels
 
         private async void AntonymClick(string obj)
         {
-            var service = new OxfordDictionaryMVVMService();
-
             Translations.Clear();
             Synonyms.Clear();
             Antonyms.Clear();
             Sentences.Clear();
 
-            var reply = await service.GetAntonymAsync(chosenSrc, obj);
+            var reply = await new OxfordDictionaryMVVMService().GetAntonymAsync(chosenSrc, obj);
 
             if (reply != null)
             {
@@ -245,16 +239,16 @@ namespace OxfordDictionaryMVVM.ViewModels
             }
         }
 
+        public string ChosenDest { get; set; }
+
         private async void TranslateClick(string obj)
         {
-            var service = new OxfordDictionaryMVVMService();
-
             Translations.Clear();
             Synonyms.Clear();
             Antonyms.Clear();
             Sentences.Clear();
 
-            var reply = await service.GetTranslationAsync(chosenSrc, obj, ChosenDest);
+            var reply = await new OxfordDictionaryMVVMService().GetTranslationAsync(chosenSrc, obj, ChosenDest);
 
             if (reply != null)
             {
@@ -321,9 +315,7 @@ namespace OxfordDictionaryMVVM.ViewModels
         /// <returns></returns>
         public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
         {
-
-            var service = new OxfordDictionaryMVVMService();
-            var languages = await service.GetLanguageAsync();
+            var languages = await new OxfordDictionaryMVVMService().GetLanguageAsync();
             var results = languages.results;
             if (results == null)
                 return;
@@ -365,7 +357,5 @@ namespace OxfordDictionaryMVVM.ViewModels
             args.Cancel = false;
             await Task.CompletedTask;
         }
-
-        public string ChosenDest { get; set; }
     }
 }

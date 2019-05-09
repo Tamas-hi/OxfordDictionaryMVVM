@@ -5,11 +5,11 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:converter="using:OxfordDictionaryMVVM.Converters"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:vm="using:OxfordDictionaryMVVM.ViewModels" x:Name="ThisPage"
+      xmlns:vm="using:OxfordDictionaryMVVM.ViewModels"
       mc:Ignorable="d">
 
     <Page.DataContext>
-        <vm:DetailPageViewModel x:Name="ViewModel" />
+        <vm:DetailPageViewModel/>
     </Page.DataContext>
     <Page.Resources>
         <converter:LanguagesToSeparateConverter x:Key="LanguagesToSeparateConverter"/>
