@@ -1,14 +1,7 @@
-﻿using System;
-using OxfordDictionaryMVVM.ViewModels;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
-using System.Collections.ObjectModel;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Popups;
+﻿using Windows.UI.Xaml.Controls;
 
-namespace OxfordDictionaryMVVM.Views {
+namespace OxfordDictionaryMVVM.Views
+{
     public sealed partial class MainPage : Page {
         public MainPage() {
             InitializeComponent();

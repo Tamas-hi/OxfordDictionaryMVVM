@@ -1,8 +1,8 @@
-﻿using OxfordDictionaryMVVM.ViewModels;
-using Windows.UI.Xaml.Navigation;
+﻿using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Controls;
 
-namespace OxfordDictionaryMVVM.Views {
+namespace OxfordDictionaryMVVM.Views
+{
     public sealed partial class DetailPage : Page {
         public DetailPage() {
             InitializeComponent();

@@ -26,14 +26,14 @@
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                     <ComboBox PlaceholderText="Source language" 
                               Width="190"
-                          ItemsSource="{Binding AllLanguages, Converter={StaticResource LanguagesToSeparateConverter}}"
+                          ItemsSource="{Binding AllLanguages, Mode=TwoWay, Converter={StaticResource LanguagesToSeparateConverter}}"
                           SelectedValue="{Binding ChosenSrc, Mode=TwoWay}"
                           DisplayMemberPath="sourceLanguage.language"
                           SelectedValuePath="sourceLanguage.id"/>
                     <TextBox Name="myTextBlock" PlaceholderText="Enter your word here!" Width="350" Margin="30 0 30 0"></TextBox>
                     <ComboBox PlaceholderText="Destination language"
                           Width="190"
-                          ItemsSource="{Binding DestinationLanguages}"
+                          ItemsSource="{Binding DestinationLanguages, Mode=TwoWay}"
                           SelectedValue="{Binding ChosenDest, Mode=TwoWay}"
                           DisplayMemberPath="targetLanguage.language"
                           SelectedValuePath="targetLanguage.id"
